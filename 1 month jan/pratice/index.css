@@ -1,16 +1,4 @@
-body {
-    background: rgb(238, 236, 236);
-}
-
-.navbar-ul {
-    margin-left: 45%;
-}
-
-
-.nav-container {
-    padding-left: 15%;
-    padding-right: 15%;
-
-    background: #1E40AF;
+body{
+    background-color:  rgba(189, 178, 178, 0.719)
 
 }
