@@ -280,7 +280,7 @@ function App() {
                   </button>
                   <span className='sender p-2'>Paytm</span>
                   <span className='subject flex-grow-1 p-2'>
-                     Payment successfu{"  "}
+                    Payment successfu{"  "}
                     <span className='snippet'>
                       -  ₹1,250 has been debited from your account.
                     </span>
@@ -314,7 +314,7 @@ function App() {
                   </button>
                   <span className='sender p-2'> Flipkarte</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Big Billion Days is live!{"  "}
+                    Big Billion Days is live!{"  "}
                     <span className='snippet'>
                       - Grab up to 70% off on electronics and fashion.
                     </span>
@@ -331,7 +331,7 @@ function App() {
                   </button>
                   <span className='sender p-2'>Swiggy</span>
                   <span className='subject flex-grow-1 p-2'>
-                  60% OFF on your favorite restaurants{"  "}
+                    60% OFF on your favorite restaurants{"  "}
                     <span className='snippet'>
                       -Order now and enjoy free delivery today.
                     </span>
@@ -348,7 +348,7 @@ function App() {
                   </button>
                   <span className='sender p-2'> HDFC Bank</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Monthly Account Statement – January 2026{"  "}
+                    Monthly Account Statement – January 2026{"  "}
                     <span className='snippet'>
                       -  Your account statement is now available for download.
                     </span>
@@ -382,14 +382,14 @@ function App() {
                   </button>
                   <span className='sender p-2'> Zoom</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Meeting Reminder: Project Discussion{"  "}
+                    Meeting Reminder: Project Discussion{"  "}
                     <span className='snippet'>
                       -   Your meeting starts in 30 minutes. Join now.
                     </span>
                   </span>
                   <span className='time p-2'> 10.30 AM</span>
                 </div>
-                  </div>
+              </div>
               <div className='email-list'>
                 <div className='email-row d-flex align-items-center border-bottom read'>
                   <Form.Check type='checkbox' className='email-checkbox p-2' />
@@ -398,14 +398,14 @@ function App() {
                   </button>
                   <span className='sender p-2'> Zoom</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Meeting Reminder: Project Discussion{"  "}
+                    Meeting Reminder: Project Discussion{"  "}
                     <span className='snippet'>
                       -   Your meeting starts in 30 minutes. Join now.
                     </span>
                   </span>
                   <span className='time p-2'> 10.30 AM</span>
                 </div>
-  </div>
+              </div>
               <div className='email-list'>
                 <div className='email-row d-flex align-items-center border-bottom raed'>
                   <Form.Check type='checkbox' className='email-checkbox p-2' />
@@ -414,14 +414,14 @@ function App() {
                   </button>
                   <span className='sender p-2'> Zoom</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Meeting Reminder: Project Discussion{"  "}
+                    Meeting Reminder: Project Discussion{"  "}
                     <span className='snippet'>
                       -   Your meeting starts in 30 minutes. Join now.
                     </span>
                   </span>
                   <span className='time p-2'> 10.30 AM</span>
                 </div>
-  </div>
+              </div>
               <div className='email-list'>
                 <div className='email-row d-flex align-items-center border-bottom unraed'>
                   <Form.Check type='checkbox' className='email-checkbox p-2' />
@@ -430,14 +430,14 @@ function App() {
                   </button>
                   <span className='sender p-2'> Zoom</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Meeting Reminder: Project Discussion{"  "}
+                    Meeting Reminder: Project Discussion{"  "}
                     <span className='snippet'>
                       -   Your meeting starts in 30 minutes. Join now.
                     </span>
                   </span>
                   <span className='time p-2'> 10.30 AM</span>
                 </div>
-  </div>
+              </div>
               <div className='email-list'>
                 <div className='email-row d-flex align-items-center border-bottom unread'>
                   <Form.Check type='checkbox' className='email-checkbox p-2' />
@@ -446,14 +446,14 @@ function App() {
                   </button>
                   <span className='sender p-2'> Zoom</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Meeting Reminder: Project Discussion{"  "}
+                    Meeting Reminder: Project Discussion{"  "}
                     <span className='snippet'>
                       -   Your meeting starts in 30 minutes. Join now.
                     </span>
                   </span>
                   <span className='time p-2'> 10.30 AM</span>
                 </div>
-  </div>
+              </div>
               <div className='email-list'>
                 <div className='email-row d-flex align-items-center border-bottom raed'>
                   <Form.Check type='checkbox' className='email-checkbox p-2' />
@@ -462,14 +462,14 @@ function App() {
                   </button>
                   <span className='sender p-2'> Zoom</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Meeting Reminder: Project Discussion{"  "}
+                    Meeting Reminder: Project Discussion{"  "}
                     <span className='snippet'>
                       -   Your meeting starts in 30 minutes. Join now.
                     </span>
                   </span>
                   <span className='time p-2'> 10.30 AM</span>
                 </div>
-  </div>
+              </div>
               <div className='email-list'>
                 <div className='email-row d-flex align-items-center border-bottom unraed'>
                   <Form.Check type='checkbox' className='email-checkbox p-2' />
@@ -478,14 +478,14 @@ function App() {
                   </button>
                   <span className='sender p-2'> Zoom</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Meeting Reminder: Project Discussion{"  "}
+                    Meeting Reminder: Project Discussion{"  "}
                     <span className='snippet'>
                       -   Your meeting starts in 30 minutes. Join now.
                     </span>
                   </span>
                   <span className='time p-2'> 10.30 AM</span>
                 </div>
-  </div>
+              </div>
               <div className='email-list'>
                 <div className='email-row d-flex align-items-center border-bottom read'>
                   <Form.Check type='checkbox' className='email-checkbox p-2' />
@@ -494,14 +494,14 @@ function App() {
                   </button>
                   <span className='sender p-2'> Zoom</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Meeting Reminder: Project Discussion{"  "}
+                    Meeting Reminder: Project Discussion{"  "}
                     <span className='snippet'>
                       -   Your meeting starts in 30 minutes. Join now.
                     </span>
                   </span>
                   <span className='time p-2'> 10.30 AM</span>
                 </div>
-  </div>
+              </div>
               <div className='email-list'>
                 <div className='email-row d-flex align-items-center border-bottom raed'>
                   <Form.Check type='checkbox' className='email-checkbox p-2' />
@@ -510,14 +510,14 @@ function App() {
                   </button>
                   <span className='sender p-2'> Zoom</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Meeting Reminder: Project Discussion{"  "}
+                    Meeting Reminder: Project Discussion{"  "}
                     <span className='snippet'>
                       -   Your meeting starts in 30 minutes. Join now.
                     </span>
                   </span>
                   <span className='time p-2'> 10.30 AM</span>
                 </div>
-  </div>
+              </div>
               <div className='email-list'>
                 <div className='email-row d-flex align-items-center border-bottom unraed'>
                   <Form.Check type='checkbox' className='email-checkbox p-2' />
@@ -526,14 +526,14 @@ function App() {
                   </button>
                   <span className='sender p-2'> Zoom</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Meeting Reminder: Project Discussion{"  "}
+                    Meeting Reminder: Project Discussion{"  "}
                     <span className='snippet'>
                       -   Your meeting starts in 30 minutes. Join now.
                     </span>
                   </span>
                   <span className='time p-2'> 10.30 AM</span>
                 </div>
-  </div>
+              </div>
               <div className='email-list'>
                 <div className='email-row d-flex align-items-center border-bottom unraed'>
                   <Form.Check type='checkbox' className='email-checkbox p-2' />
@@ -542,14 +542,14 @@ function App() {
                   </button>
                   <span className='sender p-2'> Zoom</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Meeting Reminder: Project Discussion{"  "}
+                    Meeting Reminder: Project Discussion{"  "}
                     <span className='snippet'>
                       -   Your meeting starts in 30 minutes. Join now.
                     </span>
                   </span>
                   <span className='time p-2'> 10.30 AM</span>
                 </div>
-  </div>
+              </div>
               <div className='email-list'>
                 <div className='email-row d-flex align-items-center border-bottom read'>
                   <Form.Check type='checkbox' className='email-checkbox p-2' />
@@ -558,14 +558,14 @@ function App() {
                   </button>
                   <span className='sender p-2'> Zoom</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Meeting Reminder: Project Discussion{"  "}
+                    Meeting Reminder: Project Discussion{"  "}
                     <span className='snippet'>
                       -   Your meeting starts in 30 minutes. Join now.
                     </span>
                   </span>
                   <span className='time p-2'> 10.30 AM</span>
                 </div>
-  </div>
+              </div>
               <div className='email-list'>
                 <div className='email-row d-flex align-items-center border-bottom raed'>
                   <Form.Check type='checkbox' className='email-checkbox p-2' />
@@ -574,14 +574,14 @@ function App() {
                   </button>
                   <span className='sender p-2'> Zoom</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Meeting Reminder: Project Discussion{"  "}
+                    Meeting Reminder: Project Discussion{"  "}
                     <span className='snippet'>
                       -   Your meeting starts in 30 minutes. Join now.
                     </span>
                   </span>
                   <span className='time p-2'> 10.30 AM</span>
                 </div>
-  </div>
+              </div>
               <div className='email-list'>
                 <div className='email-row d-flex align-items-center border-bottom read'>
                   <Form.Check type='checkbox' className='email-checkbox p-2' />
@@ -590,7 +590,7 @@ function App() {
                   </button>
                   <span className='sender p-2'> Zoom</span>
                   <span className='subject flex-grow-1 p-2'>
-                   Meeting Reminder: Project Discussion{"  "}
+                    Meeting Reminder: Project Discussion{" "}
                     <span className='snippet'>
                       -   Your meeting starts in 30 minutes. Join now.
                     </span>
