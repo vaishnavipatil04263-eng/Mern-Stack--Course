@@ -2,7 +2,7 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-const DetailsCard = ({cardtitle,cardDescriptions }) => {
+const DetailsCard = ({cardtitle,cardDescriptions,test }) => {
 
   return (
     <div>
@@ -17,6 +17,7 @@ const DetailsCard = ({cardtitle,cardDescriptions }) => {
               
                 </Card.Text>
                 <Button variant="primary">Go somewhere</Button>
+                <h3>{test}</h3>
               </Card.Body>
             </Card> 
     </div>
