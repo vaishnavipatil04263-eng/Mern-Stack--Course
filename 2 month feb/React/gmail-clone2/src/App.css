@@ -1,0 +1,19 @@
+body{
+  background-color: rgba(234, 81, 106, 0.867);
+  
+}
+.container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.skills {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.skills li {
+  margin: 8px 0;
+  font-size: 18px;
+}
