@@ -206,7 +206,11 @@ function App() {
               { <div className='container'>
                 <div className='row'>
                   <div className='col-md 3'>
+                    
+                    
+                    
                     Primary
+                    
                   </div>
                   <div className='col-md 3'>
                     Promotions
