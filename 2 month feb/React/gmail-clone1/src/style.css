@@ -99,10 +99,10 @@ ul {
 
 .main-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-left: 16%;
     margin-top: 7%;
-    padding-left: 0;
+    padding-left: 10px;
 }
 .box-1{
     width: 95%;
