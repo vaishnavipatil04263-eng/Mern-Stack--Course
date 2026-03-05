@@ -30,3 +30,103 @@ const itemsSchema = new mongoose.Schema({
 })
 
 const items = new mongoose.model("Item", itemsSchema)
+
+
+
+
+//API 1 - Create item
+app.post("/api/create-item" ,async(req , res)=>{
+
+    try{
+
+        const{ name, Description ,sellingprice }= req.body
+
+        const saveItem = new items(
+            { 
+            name ,
+            Description ,
+            sellingprice
+         }
+        ) 
+
+        await saveItem.save()
+        res.status(201).json({message : "Item Created" , data :saveItem})
+
+    } catch (error){
+       console.log(error)
+        
+    }
+
+})
+
+
+//API 2-Update/Edit Item
+
+app.put("/api/create-item", (req , res)=>{
+
+
+    try{
+
+    } catch (error){
+        console.console.log(error)
+        
+    }
+})
+
+//API 3- Delete Item
+app.delete(".api/delete-item" ,(req , res) =>{
+
+      try{
+
+    } catch (error){
+        console.console.log(error)
+        
+    }
+
+})
+
+//APT 4 -GetAll Item
+app.get("/api/get-all-item", async(req , res)=>{
+ 
+         try{
+
+            const allitems = await items.find()
+            res.status(200).json({message : " Get All Items List",data : allitems})
+    } catch (error){
+        console.log(error)
+        
+    }
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//helth API
+
+app.get("/helth",(req , res)=>{
+    res. status(200).json({message: "sever is Run"})
+
+})
+
+
+//sever start
+const PORT = 9090
+app.listen(PORT,() =>{
+    console.log("sever stareted" )
+})
