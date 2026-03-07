@@ -9,7 +9,7 @@
 
 // }
 // function getdata(){
-    
+
 // }
 
 console.log("hello")
@@ -18,15 +18,20 @@ const express = require("express")
 const { ServerDescription } = require("mongodb")
 const app = express()
 const mongoose = require("mongoose")
+const cors = require("cors")
 
 
 app.use(express.json())
-mongoose.connect("mongodb://localhost:27017/item-database").then( () => console.log("mongo DB Connected")).catch((error)=> console.log(error))
+app.use(cors())
+mongoose.connect("mongodb://localhost:27017/item-database").then(() => console.log("mongo DB Connected")).catch((error) => console.log(error))
 
 const itemsSchema = new mongoose.Schema({
-    name  :String,
-    Description : String,
-    sellingprice : Number
+    name: String,
+    Description: String,
+    sellingprice: Number,
+    purchaseprice: Number,
+    quantity: Number,
+    unit: String
 })
 
 const items = new mongoose.model("Item", itemsSchema)
@@ -35,26 +40,29 @@ const items = new mongoose.model("Item", itemsSchema)
 
 
 //API 1 - Create item
-app.post("/api/create-item" ,async(req , res)=>{
+app.post("/api/create-item", async (req, res) => {
 
-    try{
+    try {
 
-        const{ name, Description ,sellingprice }= req.body
+        const { name, Description, sellingprice, purchaseprice, quantity, unit } = req.body
 
         const saveItem = new items(
-            { 
-            name ,
-            Description ,
-            sellingprice
-         }
-        ) 
+            {
+                name,
+                Description,
+                sellingprice,
+                purchaseprice,
+                quantity,
+                unit
+            }
+        )
 
         await saveItem.save()
-        res.status(201).json({message : "Item Created" , data :saveItem})
+        res.status(201).json({ message: "Item Created", data: saveItem })
 
-    } catch (error){
-       console.log(error)
-        
+    } catch (error) {
+        console.log(error)
+
     }
 
 })
@@ -62,39 +70,39 @@ app.post("/api/create-item" ,async(req , res)=>{
 
 //API 2-Update/Edit Item
 
-app.put("/api/create-item", (req , res)=>{
+app.put("/api/create-item", (req, res) => {
 
 
-    try{
+    try {
 
-    } catch (error){
+    } catch (error) {
         console.console.log(error)
-        
+
     }
 })
 
 //API 3- Delete Item
-app.delete(".api/delete-item" ,(req , res) =>{
+app.delete(".api/delete-item", (req, res) => {
 
-      try{
+    try {
 
-    } catch (error){
+    } catch (error) {
         console.console.log(error)
-        
+
     }
 
 })
 
 //APT 4 -GetAll Item
-app.get("/api/get-all-item", async(req , res)=>{
- 
-         try{
+app.get("/api/get-all-item", async (req, res) => {
 
-            const allitems = await items.find()
-            res.status(200).json({message : " Get All Items List",data : allitems})
-    } catch (error){
+    try {
+
+        const allitems = await items.find()
+        res.status(200).json({ message: " Get All Items List", data: allitems })
+    } catch (error) {
         console.log(error)
-        
+
     }
 
 })
@@ -119,14 +127,14 @@ app.get("/api/get-all-item", async(req , res)=>{
 
 //helth API
 
-app.get("/helth",(req , res)=>{
-    res. status(200).json({message: "sever is Run"})
+app.get("/helth", (req, res) => {
+    res.status(200).json({ message: "sever is Run" })
 
 })
 
 
 //sever start
 const PORT = 9090
-app.listen(PORT,() =>{
-    console.log("sever stareted" )
+app.listen(PORT, () => {
+    console.log("sever stareted")
 })

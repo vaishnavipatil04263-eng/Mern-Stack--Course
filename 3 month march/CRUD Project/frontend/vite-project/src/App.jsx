@@ -7,15 +7,19 @@ import Table from 'react-bootstrap/Table';
 import { ToastContainer, toast } from 'react-toastify';
 import "./style.css";
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 function App() {
   const [Itemname, setitemname] = useState() //hook-use state hook
+  const [itemData, setData] = useState()
+
+
   console.log(Itemname, "Item Name Value")
   const handleOnChenge = (event) => {
     setitemname(event.target.value)
     console.log("typing on input field")
   };
-   function SubmitFrom(e) {
+  function SubmitFrom(e) {
     e.preventDefault();
     console.log("Form submitted")
     toast.success(' Form Submitted', {
@@ -29,6 +33,31 @@ function App() {
       theme: "light",
     });
   }
+
+
+  const getAllItemsData = async () => {
+    try {
+
+      const apiResponse = await fetch("http://localhost:9090/api/get-all-item")
+      const responseData = await apiResponse.json()
+      setData(responseData.data)
+
+      console.log(responseData);
+
+    } catch (error) {
+      console.log(error)
+
+    }
+  };
+
+  useEffect(() => {
+    getAllItemsData();
+  }, [])
+
+
+  console.log(
+    itemData, "itemData ==>"
+  )
   return (
     <>
       <ToastContainer
@@ -119,40 +148,36 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Pen</td>
-                  <td>jel pen</td>
-                  <td>10</td>
-                  <td>20</td>
-                  <td>10</td>
-                  <td>Box</td>
-                  <td className='d-flex'>
-                    <button className='btn btn-success'> Edit</button>
-                    <button className='btn btn-danger mx-2'>Delete</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Book</td>
-                  <td>classment</td>
-                  <td>10</td>
-                  <td>20</td>
-                  <td>10</td>
-                  <td>Box</td>
-                  <td className='d-flex'>
-                    <button className='btn btn-success'> Edit</button>
-                    <button className='btn btn-danger mx-2'>Delete</button>
-                  </td>
-                </tr>
+              
+                {
+                  itemData &&
+                  itemData.map((each , index)=>{
+                    return(
+                      <tr>
+                         <td>{index + 1}</td>
+                        <td>{each.name}</td>
+                        <td>{each.Description}</td>
+                        <td>{each.purchaseprice}</td>
+                        <td>{each.quantity}</td>
+                        <td>{each.sellingprice}</td>
+                          <td>{each.unit}</td>
+                          <td className='d-flex'>
+                          <button className='btn btn-success'>Edit</button>
+                           <button className='btn btn-danger mx-2'>{" "}delete</button>
 
-              </tbody>
+                          </td>
+                      </tr>
+                    )
+                  })
+                }
+                
+                  </tbody>
             </Table>
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
