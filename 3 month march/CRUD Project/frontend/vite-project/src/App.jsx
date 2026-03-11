@@ -5,33 +5,54 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
 import { ToastContainer, toast } from 'react-toastify';
+import axios from "axios";
 import "./style.css";
 import { useState } from 'react';
 import { useEffect } from 'react';
 
 function App() {
-  const [Itemname, setitemname] = useState() //hook-use state hook
+  const [itemname, setItemname] = useState(); //hook-use state hook
+  const [discriptions, setDiscriptions] = useState();
+  const [purchasePrice, setPurchasePricee] = useState();
+  const [sellingPrice, setSellingPrice] = useState();
+  const [quantity, setQuantity] = useState();
+   const [unit, setunit] = useState();
   const [itemData, setData] = useState()
 
+  async function SubmitFrom(e) {
+    try {
+   e.preventDefault();
+     const data = {
+        name: itemData,
+        Description: discriptions,
+        purchaseprice: purchasePrice,
+        sellingprice: sellingPrice,
+        quantity: quantity,
+        unit : unit
+      };
 
-  console.log(Itemname, "Item Name Value")
-  const handleOnChenge = (event) => {
-    setitemname(event.target.value)
-    console.log("typing on input field")
-  };
-  function SubmitFrom(e) {
-    e.preventDefault();
-    console.log("Form submitted")
-    toast.success(' Form Submitted', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+      console.log(data, "Form submitted");
+      const apiResponse = await axios.post("http://localhost:9090/api/create-item",
+        data
+      ).then(console.log("yes")).catch((error) => console.log(error))
+
+      console.log(apiResponse)
+     toast.success(' Form Submitted', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+
+
+    } catch (error) {
+      console.log(error)
+
+    }
   }
 
 
@@ -82,12 +103,17 @@ function App() {
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Item name</Form.Label>
                   <Form.Control type="Text" placeholder="Enter Item Name " onChange={() => handleOnChenge(event)}
+                    value={itemname}
                   />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridZip">
                   <Form.Label>Discriptions</Form.Label>
-                  <Form.Control type="text" placeholder=' Enter Discription' />
+                  <Form.Control type="text" placeholder=' Enter Discription'
+                    onChange={() => setDiscriptions(event.target.value)}
+                    value={discriptions}
+
+                  />
                 </Form.Group>
               </Row>
 
@@ -95,23 +121,35 @@ function App() {
                 <Form.Group as={Col} controlId="formGridPassword">
                   <Form.Label>Purchase Price</Form.Label>
                   <Form.Control type="Number" placeholder="Enter Purchase Price"
+                    value={purchasePrice}
+                    onChange={() => setPurchasePricee(event.target.value)}
+
+
                   />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridAddress1">
                   <Form.Label>Selling Price</Form.Label>
-                  <Form.Control type="Number" placeholder="Enter selling price" />
+                  <Form.Control type="Number" placeholder="Enter selling price"
+                    value={sellingPrice}
+                    onChange={() => setSellingPrice(event.target.value)}
+
+                  />
                 </Form.Group>
               </Row>
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridCity">
                   <Form.Label>Quantity</Form.Label>
-                  <Form.Control type="Numer" placeholder='Enter Quantity ' />
+                  <Form.Control type="Numer" placeholder='Enter Quantity ' 
+                  onChange={() => setQuantity(event.target.value)}
+                  />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridState">
                   <Form.Label>Unit</Form.Label>
-                  <Form.Select defaultValue="Choose...">
+                  <Form.Select defaultValue="Choose..." value={quantity}
+                    onChange={() => setunit(event.target.value)}
+                  >
                     <option>Choose Unit</option>
                     <option>Pice</option>
                     <option>Box</option>
@@ -148,30 +186,30 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-              
+
                 {
                   itemData &&
-                  itemData.map((each , index)=>{
-                    return(
+                  itemData.map((each, index) => {
+                    return (
                       <tr>
-                         <td>{index + 1}</td>
+                        <td>{index + 1}</td>
                         <td>{each.name}</td>
                         <td>{each.Description}</td>
                         <td>{each.purchaseprice}</td>
                         <td>{each.quantity}</td>
                         <td>{each.sellingprice}</td>
-                          <td>{each.unit}</td>
-                          <td className='d-flex'>
+                        <td>{each.unit}</td>
+                        <td className='d-flex'>
                           <button className='btn btn-success'>Edit</button>
-                           <button className='btn btn-danger mx-2'>{" "}delete</button>
+                          <button className='btn btn-danger mx-2'>{" "}delete</button>
 
-                          </td>
+                        </td>
                       </tr>
                     )
                   })
                 }
-                
-                  </tbody>
+
+              </tbody>
             </Table>
           </div>
         </div>
