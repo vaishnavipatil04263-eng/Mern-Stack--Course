@@ -1,43 +1,51 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import Table from 'react-bootstrap/Table';
 import { ToastContainer, toast } from 'react-toastify';
-import axios from "axios";
-import "./style.css";
+import axios from "axios"
+
+import "./style.css"
 import { useState } from 'react';
 import { useEffect } from 'react';
 
 function App() {
-  const [itemname, setItemname] = useState(); //hook-use state hook
-  const [discriptions, setDiscriptions] = useState();
-  const [purchasePrice, setPurchasePricee] = useState();
-  const [sellingPrice, setSellingPrice] = useState();
-  const [quantity, setQuantity] = useState();
-   const [unit, setunit] = useState();
+  const [itemName, setItemName] = useState()
+  const [description, setDescription] = useState()
+  const [purchasePrice, setPurchasePrice] = useState()
+  const [sellingPrice, setSellingPrice] = useState()
+  const [quantity, setQuantity] = useState()
+  const [unit, setUnit] = useState()
   const [itemData, setData] = useState()
 
-  async function SubmitFrom(e) {
+  async function SubmitForm(e) {
     try {
-   e.preventDefault();
-     const data = {
-        name: itemData,
-        Description: discriptions,
-        purchaseprice: purchasePrice,
-        sellingprice: sellingPrice,
+
+
+      e.preventDefault();
+
+      const data = {
+        name: itemName,
+        decription: description,
+        sellingPrice: sellingPrice,
+        purchasePrice: purchasePrice,
         quantity: quantity,
-        unit : unit
+        unit: unit
       };
 
-      console.log(data, "Form submitted");
-      const apiResponse = await axios.post("http://localhost:9090/api/create-item",
-        data
-      ).then(console.log("yes")).catch((error) => console.log(error))
+      console.log(data, "form submitted");
+      const apiResponse = await axios
+        .post("http://localhost:9090/api/create-item", data)
+        .then(console.group("yes")).catch((error) => console
+          .log(error))
 
       console.log(apiResponse)
-     toast.success(' Form Submitted', {
+      getAllItemsData();
+
+
+      toast.success("Form submitted", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -48,22 +56,23 @@ function App() {
         theme: "light",
       });
 
-
     } catch (error) {
       console.log(error)
-
     }
+
   }
+
 
 
   const getAllItemsData = async () => {
     try {
-
       const apiResponse = await fetch("http://localhost:9090/api/get-all-item")
       const responseData = await apiResponse.json()
       setData(responseData.data)
 
-      console.log(responseData);
+
+      console.log(responseData)
+
 
     } catch (error) {
       console.log(error)
@@ -73,14 +82,16 @@ function App() {
 
   useEffect(() => {
     getAllItemsData();
-  }, [])
+  }, []);
 
 
   console.log(
     itemData, "itemData ==>"
   )
+
   return (
     <>
+
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -93,26 +104,32 @@ function App() {
         pauseOnHover
         theme="light"
       />
-      <h2 className='text-danger text-center my-5'>CRUD - MERN Stack Project Start</h2>
+
+      <h2 className='text-danger text-center my-5'>CRUD - MERN STACK PROJECT START</h2>
+
       <div className='container'>
+
         <div className='row'>
           <div className='col-md-6'>
             <h3 className='border text-center'>Create Item</h3>
-            <Form>
+            <Form className='my-5'>
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridEmail">
-                  <Form.Label>Item name</Form.Label>
-                  <Form.Control type="Text" placeholder="Enter Item Name " onChange={() => handleOnChenge(event)}
-                    value={itemname}
+                  <Form.Label>Item Name</Form.Label>
+
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter Item Name"
+                    onChange={(event) => setItemName(event.target.value)}
+                    value={itemName}
                   />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridZip">
-                  <Form.Label>Discriptions</Form.Label>
-                  <Form.Control type="text" placeholder=' Enter Discription'
-                    onChange={() => setDiscriptions(event.target.value)}
-                    value={discriptions}
-
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control type="text" placholer="Enter description"
+                    onChange={(event) => setDescription(event.target.value)}
+                    value={description}
                   />
                 </Form.Group>
               </Row>
@@ -121,68 +138,69 @@ function App() {
                 <Form.Group as={Col} controlId="formGridPassword">
                   <Form.Label>Purchase Price</Form.Label>
                   <Form.Control type="Number" placeholder="Enter Purchase Price"
+                    onChange={(event) => setPurchasePrice(event.target.value)}
                     value={purchasePrice}
-                    onChange={() => setPurchasePricee(event.target.value)}
-
-
                   />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridAddress1">
                   <Form.Label>Selling Price</Form.Label>
-                  <Form.Control type="Number" placeholder="Enter selling price"
+                  <Form.Control type="Number" placeholder="Enter Selling Price"
+                    onChange={(event) => setSellingPrice(event.target.value)}
                     value={sellingPrice}
-                    onChange={() => setSellingPrice(event.target.value)}
-
                   />
                 </Form.Group>
               </Row>
+
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridCity">
                   <Form.Label>Quantity</Form.Label>
-                  <Form.Control type="Numer" placeholder='Enter Quantity ' 
-                  onChange={() => setQuantity(event.target.value)}
+                  <Form.Control type="Number" placholder="Enter Quantity"
+
+                    onChange={(event) => setQuantity(event.target.value)}
                   />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridState">
                   <Form.Label>Unit</Form.Label>
-                  <Form.Select defaultValue="Choose..." value={quantity}
-                    onChange={() => setunit(event.target.value)}
+                  <Form.Select defaultValue="Choose Unit" value={unit}
+                    onChange={(event) => setUnit(event.target.value)}
                   >
+
                     <option>Choose Unit</option>
-                    <option>Pice</option>
+                    <option>piecs</option>
                     <option>Box</option>
                     <option>Kg</option>
-                    <option>Gram</option>
-                    <option>Litter</option>
-
+                    <option>gm</option>
+                    <option>ltr</option>
                   </Form.Select>
                 </Form.Group>
               </Row>
               <div className='text-center'>
-                <Button variant="primary" type="submit" className='w-50'
-                  onClick={SubmitFrom}
+                <Button variant="primary"
+                  type="submit"
+                  className='w-50'
+                  onClick={SubmitForm}
                 >
-                  submit
+                  Submit
                 </Button>
               </div>
-
             </Form>
           </div>
           <div className='col-md-6'>
-            <h3 className='border text-center'>Get Items</h3>
+            <h3 className='border text-center'>Get Item</h3>
+
             <Table striped bordered hover>
               <thead>
                 <tr>
                   <th>Id</th>
                   <th>Item Name</th>
-                  <th>Discriptions</th>
+                  <th>Description</th>
                   <th>Purchase Price</th>
                   <th>Selling Price</th>
                   <th>Quantity</th>
                   <th>Unit</th>
-                  <th>Actions</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -192,22 +210,30 @@ function App() {
                   itemData.map((each, index) => {
                     return (
                       <tr>
+
                         <td>{index + 1}</td>
                         <td>{each.name}</td>
-                        <td>{each.Description}</td>
-                        <td>{each.purchaseprice}</td>
+                        <td>{each.decription}</td>
+                        <td>{each.purchasePrice}</td>
+                        <td>{each.sellingPrice}</td>
                         <td>{each.quantity}</td>
-                        <td>{each.sellingprice}</td>
                         <td>{each.unit}</td>
                         <td className='d-flex'>
                           <button className='btn btn-success'>Edit</button>
-                          <button className='btn btn-danger mx-2'>{" "}delete</button>
-
+                          <button className='btn btn-danger mx-2'>
+                            {" "}
+                            Delete
+                          </button>
                         </td>
+
                       </tr>
-                    )
-                  })
-                }
+
+                    );
+                  }
+                  )}
+
+
+
 
               </tbody>
             </Table>
@@ -215,7 +241,7 @@ function App() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
