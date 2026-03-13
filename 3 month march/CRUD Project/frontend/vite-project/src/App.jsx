@@ -10,6 +10,7 @@ import axios from "axios"
 import "./style.css"
 import { useState } from 'react';
 import { useEffect } from 'react';
+import Modal from 'react-bootstrap/Modal';
 
 function App() {
   const [itemName, setItemName] = useState()
@@ -88,6 +89,39 @@ function App() {
   console.log(
     itemData, "itemData ==>"
   )
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const [id , setId] =useState()
+
+  const openDeleteModle= (id) =>{
+    try{
+      setShow(true);
+      setId(id)
+
+
+      console.log(id,"id==>")
+      console.log("call delete function")
+
+    }catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleDelete = async() =>{
+    try{
+      console.log (-id , "_id==>" );
+      const apiResponse = await axios.delete(`http://localhost:9090/api/delete-item/${id}` )
+      setShow(false)
+      console.log(apiResponse)
+     
+    getAllItemsData();
+   
+    }catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -220,8 +254,11 @@ function App() {
                         <td>{each.unit}</td>
                         <td className='d-flex'>
                           <button className='btn btn-success'>Edit</button>
-                          <button className='btn btn-danger mx-2'>
-                            {" "}
+                          <button className='btn btn-danger mx-2'
+                          
+                          onClick={ () => openDeleteModle(each._id)}
+                          >
+                          
                             Delete
                           </button>
                         </td>
@@ -240,6 +277,23 @@ function App() {
           </div>
         </div>
       </div>
+
+     
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete confirmation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you aure wan to delete this Item</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleDelete}>
+            Yes
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            No
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   )
 }

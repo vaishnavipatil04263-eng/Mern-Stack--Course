@@ -71,8 +71,16 @@ app.put( "/api/update-item", (req , res) =>{
 
 
 //API 1- Delete Item
-app.delete("/api/delete-item " , (req , res) =>{
+app.delete("/api/delete-item/:id", async (req , res) =>{
     try{
+
+        const { id } = req.params
+
+             const deleteItem = await Items.findByIdAndDelete(id)
+
+        res.status(200).json({ message : "Item Deleted" , deleteItem : deleteItem})
+
+      
           
        } catch (error){
         console.log(error)
