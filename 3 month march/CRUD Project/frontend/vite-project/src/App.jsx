@@ -8,12 +8,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import axios from "axios"
 
 import "./style.css"
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState } from 'react';  //store Data
+import { useEffect } from 'react'; //Function call After page Load
 import Modal from 'react-bootstrap/Modal';
 
 function App() {
-  const [itemName, setItemName] = useState()
+  const [itemName, setItemName] = useState() //1 use state hook
   const [description, setDescription] = useState()
   const [purchasePrice, setPurchasePrice] = useState()
   const [sellingPrice, setSellingPrice] = useState()

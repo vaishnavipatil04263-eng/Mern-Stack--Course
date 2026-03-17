@@ -10,16 +10,16 @@
 // // 3. Delete iteam - get iteam details from frontend and on delete this record from database
 // // 4. get ALL Records - get ALL records from DB and show to UI frontend
 
-console.log("Hello Node Js project is started")
+console.log("Hello Node Js project is started") //server started
 
-const express = require('express')          //expres js is framework of node js
+const express = require('express')          //expres js is framework of node js creat api use
 const app = express()                      //app=variable => stores express js
 const mongoose = require('mongoose')
-const cors = require('cors')
+const cors = require('cors')             //cross 
 
-app.use(express.json())                   //converts all data in json format
+app.use(express.json())                   // frontend converts all data in json format
 app.use(cors())
-mongoose.connect("mongodb://localhost:27017/item-database").then(() => console.log("MongoDB connected"))
+mongoose.connect("mongodb://localhost:27017/item-database").then(() => console.log("MongoDB connected")) //mongoos use moongodb connect 
 .catch((error) => console.log(error))          //if it get connected then it goes in then and if not it goes in catch
 
 
@@ -32,6 +32,7 @@ const itemsSchema = new mongoose.Schema({            // Schema= database table s
     unit: String,
 })
 
+//creat collection/table called "items"
 const Items = new mongoose.model("Items", itemsSchema)
 
 
@@ -39,7 +40,7 @@ const Items = new mongoose.model("Items", itemsSchema)
 app.post( "/api/create-item" , async (req , res) =>{
        try{
 
-        const { name , decription , sellingPrice ,purchasePrice , quantity , unit } = req.body
+        const { name , decription , sellingPrice ,purchasePrice , quantity , unit } = req.body //frontend data
 
         const saveItem = new Items(
            { name,
