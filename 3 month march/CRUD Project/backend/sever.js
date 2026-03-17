@@ -10,96 +10,29 @@
 // // 3. Delete iteam - get iteam details from frontend and on delete this record from database
 // // 4. get ALL Records - get ALL records from DB and show to UI frontend
 
-console.log("Hello Node Js project is started") //server started
 
 const express = require('express')          //expres js is framework of node js creat api use
 const app = express()                      //app=variable => stores express js
-const mongoose = require('mongoose')
+
 const cors = require('cors')             //cross 
+const { connectDB } = require('./config/db')
 
 app.use(express.json())                   // frontend converts all data in json format
 app.use(cors())
-mongoose.connect("mongodb://localhost:27017/item-database").then(() => console.log("MongoDB connected")) //mongoos use moongodb connect 
-.catch((error) => console.log(error))          //if it get connected then it goes in then and if not it goes in catch
 
-
-const itemsSchema = new mongoose.Schema({            // Schema= database table structure model
-    name: String,                                    // structure of values stored database
-    decription: String,
-    sellingPrice: Number,
-    purchasePrice: Number,
-    quantity: Number,
-    unit: String,
-})
-
-//creat collection/table called "items"
-const Items = new mongoose.model("Items", itemsSchema)
-
+connectDB()
 
 //API 1- Create Item
-app.post( "/api/create-item" , async (req , res) =>{
-       try{
-
-        const { name , decription , sellingPrice ,purchasePrice , quantity , unit } = req.body //frontend data
-
-        const saveItem = new Items(
-           { name,
-            decription,
-            sellingPrice,
-            purchasePrice,
-            quantity, 
-            unit
-            }
-        )
-          await saveItem.save()
-
-          res.status(201).json( {message : "Item Created" , data : saveItem})
-       } catch (error){
-        console.log(error)
-       }
-} )
-
-
+app.post( "/api/create-item" ,addItems)
 
 //API 2- Update/Edit
-app.put( "/api/update-item", (req , res) =>{
-  try{
-          
-       } catch (error){
-        console.log(error)
-       }
-} )
-
+app.put( "/api/update-item", editItems  )
 
 //API 1- Delete Item
-app.delete("/api/delete-item/:id", async (req , res) =>{
-    try{
-
-        const { id } = req.params
-
-             const deleteItem = await Items.findByIdAndDelete(id)
-
-        res.status(200).json({ message : "Item Deleted" , deleteItem : deleteItem})
-
-      
-          
-       } catch (error){
-        console.log(error)
-       }
-})
-
+app.delete("/api/delete-item/:id", deleteItems )
 
 //API 1- GetAll Item
-app.get("/api/get-all-item" , async (req , res) => {
-    try{
-        const items = await Items.find()
-
-        res.status(200).json({ message : "Get All Item List" , data : items})
-          
-       } catch (error){
-        console.log(error)
-       }
-})
+app.get("/api/get-all-item" , getAllItems  )
 
 //Health API
 app.get("/health", (req, res) => {
