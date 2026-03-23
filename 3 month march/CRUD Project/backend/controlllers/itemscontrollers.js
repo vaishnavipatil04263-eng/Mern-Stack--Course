@@ -1,6 +1,6 @@
 
-import Items from "./../models/itemsModels"
-const addItem = async () => {
+const Items = require('./../models/itemsModels')
+const addItem = async (req, res) => {
     try {
 
         const { name, decription, sellingPrice, purchasePrice, quantity, unit } = req.body //frontend data
@@ -15,15 +15,23 @@ const addItem = async () => {
                 unit
             }
         )
+        //save item into MongoDb
         await saveItem.save()
+        //send response to frontend
+        res.status(201).json(
+            {
+                message: "Item Created",
+                data: saveItem
+            }
+        )
 
-        res.status(201).json({ message: "Item Created", data: saveItem })
     } catch (error) {
+        //print error in console
         console.log(error)
     }
 }
 
-const getAllItems = async () => {
+const getAllItems = async ( req, res) => {
     try {
         const items = await Items.find()
 
@@ -35,7 +43,7 @@ const getAllItems = async () => {
 }
 
 
-const deleteItems = async () => {
+const deleteItems = async (req, res) => {
     try {
 
         const { id } = req.params
@@ -50,7 +58,7 @@ const deleteItems = async () => {
 }
 
 
-const editItems = async () => {
+const editItems = async (req, res) => {
 
     try {
 
@@ -58,4 +66,5 @@ const editItems = async () => {
         console.log(error)
     }
 }
+
 module.exports = { addItem, getAllItems, deleteItems, editItems }

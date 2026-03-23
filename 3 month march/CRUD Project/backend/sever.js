@@ -1,29 +1,34 @@
-// // Backend Project
+// // Backend Project //Node js //Express js //DB MongoDB
 
-// //Node js
-// //Express js                                                                    
-// //DB MongoDB
-
-// // API list
-// //  1. Create iteam - Get data value from frontend {iteam details} and store into DB
-// // 2. Update iteam - get iteam details from frontend which iteam we need to update
-// // 3. Delete iteam - get iteam details from frontend and on delete this record from database
-// // 4. get ALL Records - get ALL records from DB and show to UI frontend
+//API'S - url- DB opretions -CRUD
 
 
-const express = require('express')          //expres js is framework of node js creat api use
-const app = express()                      //app=variable => stores express js
 
-const cors = require('cors')             //cross 
-const { connectDB } = require('./config/db')
+//Import Express framework (used to create server and APIs)
+const express = require('express') 
 
-app.use(express.json())                   // frontend converts all data in json format
+// create express application instance
+const app = express()         
+
+//import CORS library (allowws frontend apps to call backend APIs)
+const cors = require('cors')         
+
+//connect MongoDB database
+const { connectDB } = require('./config/db') //inform function from another file
+
+const { addItem , editItems, deleteItems , getAllItems} = require('./controlllers/itemscontrollers')
+
+//Missleware convert incomming request data into JSON format
+//const userinfo= {"name" : "hoc"}
+app.use(express.json())             
+
+//Middlness: enable cross- origin resource sharing
 app.use(cors())
 
 connectDB()
 
 //API 1- Create Item
-app.post( "/api/create-item" ,addItems)
+app.post( "/api/create-item" , addItem)
 
 //API 2- Update/Edit
 app.put( "/api/update-item", editItems  )

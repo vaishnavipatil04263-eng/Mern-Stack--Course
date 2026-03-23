@@ -25,5 +25,7 @@ const itemsSchema = new mongoose.Schema({
     unit: String,
 })
 
-//creat collection/table called "items"
-module.exports = mongoose.model("Items", itemsSchema)
+//create collection/table called "items"
+ const Items =mongoose.model("Items",itemsSchema)
+
+module.exports =  Items

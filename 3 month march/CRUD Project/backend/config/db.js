@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 const connectDB = () => {
     try {
         //connect Node,js sever with MongoDB database
+        // common URL same for all\database name
+       // mongodb://localhost:27017/item-database
         mongoose.connect("mongodb://localhost:27017/item-database")
 
             //if connections successful show message in console
