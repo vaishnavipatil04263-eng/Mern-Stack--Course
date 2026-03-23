@@ -1,31 +1,31 @@
+
 const mongoose = require('mongoose')
 
-//...............................
-//schema - model (Database Strucrure)
-//..................................
+//Schema - model (database structure)
 
-//Define structure of item documents in mongoDB
-const itemsSchema = new mongoose.Schema({  
-    //Item name    
-    name:String,
-    
-    //Item  decription
+//define structure of item document in mongoDB
+const itemsSchema = new mongoose.Schema({
+
+    //Item name
+    name: String,
+
+    //Item decription
     decription: String,
 
-    //selling price of items
+    //Item sellingPrice
     sellingPrice: Number,
 
-    //purchase price of items
+    //Item purchasePrice
     purchasePrice: Number,
 
-    //Avalibale quantity
+    //Item quantity
     quantity: Number,
 
-    //Unit type (kg, pcs, box, etc)
+    //Item unit
     unit: String,
 })
 
-//create collection/table called "items"
- const Items =mongoose.model("Items",itemsSchema)
+//create collection /table called "Item"
+const Items = mongoose.model("Item", itemsSchema)
 
-module.exports =  Items
+module.exports = Items

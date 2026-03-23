@@ -1,50 +1,62 @@
-// // Backend Project //Node js //Express js //DB MongoDB
+// // Backend Project // //Node js // //Express js  // //DB MongoDB
 
-//API'S - url- DB opretions -CRUD
+//expres js is framework of node js creat api use
+const express = require('express')
 
+//app=variable => stores express js
+const app = express()
 
+//cross 
+const cors = require('cors')
 
-//Import Express framework (used to create server and APIs)
-const express = require('express') 
+//connect mongodb database
+const { connectDB } = require('./config/db')
 
-// create express application instance
-const app = express()         
+const {addItem , editItem , deleteItem ,  getAllItems} = require('./controllers/itemscontrollers')
 
-//import CORS library (allowws frontend apps to call backend APIs)
-const cors = require('cors')         
+// frontend converts all data in json format
+app.use(express.json())
 
-//connect MongoDB database
-const { connectDB } = require('./config/db') //inform function from another file
-
-const { addItem , editItems, deleteItems , getAllItems} = require('./controlllers/itemscontrollers')
-
-//Missleware convert incomming request data into JSON format
-//const userinfo= {"name" : "hoc"}
-app.use(express.json())             
-
-//Middlness: enable cross- origin resource sharing
+//middleware: enable Cross-origin Resource sharing
 app.use(cors())
+
+//----------------
+// MongoDB database connection
+//----------------
 
 connectDB()
 
-//API 1- Create Item
-app.post( "/api/create-item" , addItem)
 
-//API 2- Update/Edit
-app.put( "/api/update-item", editItems  )
+//POST API 1- Create Item
+app.post("/api/create-item", addItem)
 
-//API 1- Delete Item
-app.delete("/api/delete-item/:id", deleteItems )
 
-//API 1- GetAll Item
-app.get("/api/get-all-item" , getAllItems  )
+// PUT API 2- Update/Edit
+app.put("/api/update-item", editItem)
 
-//Health API
+
+// DELETE API - to remove database
+app.delete("/api/delete-item/:id", deleteItem)
+
+
+//API - GetAll Item
+app.get("/api/get-all-item", getAllItems)
+
+
+//simple API to check server  is running
 app.get("/health", (req, res) => {
     res.status(200).json({ message: "Server Is Running" })
 })
-//server Start
+
+
+// -----------------
+// Server Start
+// ----------------
+
+// Define port number when server will run
 const PORT = 9090
+
+//start express server
 app.listen(PORT, () => {
     console.log('Server Started')
 })
