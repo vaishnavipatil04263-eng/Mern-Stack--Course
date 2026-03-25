@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 //Importing Table component form react-bootstap to display data in tabuar format
 import Table from 'react-bootstrap/Table';
 //Importing Button component form react-bootstap to craete clickable button 
@@ -51,59 +51,53 @@ function Homepage() {
     //state to store the item name entered by user
     const [itemData, setData] = useState()
 
-   //Async function to handle from submission and send data to the backend API
+    //Async function to handle from submission and send data to the backend API
     async function SubmitForm(e) {
         try {
 
-          // Prevent the default form submission behavior
+            // Prevent the default form submission behavior
             e.preventDefault();
-          //create an object with all form field value to send to the API
+            //create an object with all form field value to send to the API
             const data = {
                 //mpping itemname state to 'name' field
                 name: itemName,
-               //mpping description state to 'description' field
+                //mpping description state to 'description' field
                 decription: description,
-               //mpping sellingPrice state to 'sellingPrice' field
+                //mpping sellingPrice state to 'sellingPrice' field
                 sellingPrice: sellingPrice,
                 //mpping purchasePrice state to 'purchasePrice' field
                 purchasePrice: purchasePrice,
-                 //mpping quantity state to 'quantity' field
+                //mpping quantity state to 'quantity' field
                 quantity: quantity,
-              //mpping unit state to 'unit' field
+                //mpping unit state to 'unit' field
                 unit: unit
             };
 
-         //Logging the form data to the console for dubugging
+            //Logging the form data to the console for dubugging
             console.log(data, "form submitted");
-        // Sending a POST request to the backend API to create new item
+            // Sending a POST request to the backend API to create new item
             const apiResponse = await axios
                 .post("http://localhost:9090/api/create-item", data)
                 // Logging success message when request is successful
                 .then(console.group("yes")).catch((error) => console
-                 
+
                     .log(error))
 
-          // // Logging error if the request failas
+            // // Logging error if the request failas
             console.log(apiResponse)
-           // calling getAllitemsData to ref the item list after creating a new item
+            // calling getAllitemsData to ref the item list after creating a new item
             getAllItemsData();
-           // showing a succsee toast notification after form is sumited successfuly
+            // showing a succsee toast notification after form is sumited successfuly
             toast.success("Form submitted", {
-           // seting toast position to top-right  corner
+                // seting toast position to top-right  corner
                 position: "top-right",
-            //Y
+                //Y
                 autoClose: 5000,
-
                 hideProgressBar: false,
-
                 closeOnClick: false,
-
                 pauseOnHover: true,
-
                 draggable: true,
-
                 progress: undefined,
-
                 theme: "light",
             });
 
@@ -121,17 +115,11 @@ function Homepage() {
 
 
             const apiResponse = await fetch("http://localhost:9090/api/get-all-item")
-
             const responseData = await apiResponse.json()
-
             setData(responseData.data)
-
-
             console.log(responseData)
 
-
         } catch (error) {
-
             console.log(error)
 
         }
@@ -149,23 +137,16 @@ function Homepage() {
     )
 
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const [id, setId] = useState()
-
-
     const openDeleteModle = (id) => {
         try {
 
             setShow(true);
-
             setId(id)
-
             console.log(id, "id==>")
-
             console.log("call delete function")
         } catch (error) {
-
             console.log(error)
         }
     }
@@ -173,19 +154,13 @@ function Homepage() {
 
     const handleDelete = async () => {
         try {
-
             console.log(-id, "_id==>");
-
             const apiResponse = await axios.delete(`http://localhost:9090/api/delete-item/${id}`)
-
             setShow(false)
-
             console.log(apiResponse)
-
             getAllItemsData();
 
         } catch (error) {
-
             console.log(error)
         }
     }
@@ -194,56 +169,31 @@ function Homepage() {
         <>
 
             <ToastContainer
-
                 position="top-right"
-
                 autoClose={5000}
-
                 hideProgressBar={false}
-
                 newestOnTop={false}
-
                 closeOnClick={false}
-
                 rtl={false}
-
                 pauseOnFocusLoss
-
                 draggable
-
                 pauseOnHover
-
                 theme="light"
             />
 
             <h2 className='text-danger text-center my-5'>CRUD </h2>
-
             <div className='container'>
-
-
                 <div className='row'>
-
                     <div className='col-md-6'>
-
                         <h3 className='border text-center'>Create Item</h3>
-
                         <Form className='my-5'>
-
                             <Row className="mb-3">
-
                                 <Form.Group as={Col} controlId="formGridEmail">
-
                                     <Form.Label>Item Name</Form.Label>
-
                                     <Form.Control
-
                                         type="text"
-
                                         placeholder="Enter Item Name"
-
-
                                         onChange={(event) => setItemName(event.target.value)}
-
                                         value={itemName}
                                     />
                                 </Form.Group>
@@ -252,7 +202,6 @@ function Homepage() {
                                 <Form.Group as={Col} controlId="formGridZip">
 
                                     <Form.Label>Description</Form.Label>
-
                                     <Form.Control type="text" placholer="Enter description"
                                         onChange={(event) => setDescription(event.target.value)}
                                         value={description}
@@ -301,18 +250,11 @@ function Homepage() {
                                     <Form.Select defaultValue="Choose Unit" value={unit}
                                         onChange={(event) => setUnit(event.target.value)}
                                     >
-
-
                                         <option>Choose Unit</option>
-
                                         <option>piecs</option>
-
                                         <option>Box</option>
-
                                         <option>Kg</option>
-
                                         <option>gm</option>
-
                                         <option>ltr</option>
                                     </Form.Select>
                                 </Form.Group>
@@ -342,19 +284,12 @@ function Homepage() {
                                 <tr>
 
                                     <th>Id</th>
-
                                     <th>Item Name</th>
-
                                     <th>Description</th>
-
                                     <th>Purchase Price</th>
-
                                     <th>Selling Price</th>
-
                                     <th>Quantity</th>
-
                                     <th>Unit</th>
-
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -371,25 +306,15 @@ function Homepage() {
 
 
                                                 <td>{index + 1}</td>
-
                                                 <td>{each.name}</td>
-
                                                 <td>{each.decription}</td>
-
                                                 <td>{each.purchasePrice}</td>
-
                                                 <td>{each.sellingPrice}</td>
-
                                                 <td>{each.quantity}</td>
-
                                                 <td>{each.unit}</td>
-
                                                 <td className='d-flex'>
-
                                                     <button className='btn btn-success'>Edit</button>
-
                                                     <button className='btn btn-danger mx-2'
-
                                                         onClick={() => openDeleteModle(each._id)}
                                                     >
 
@@ -402,11 +327,8 @@ function Homepage() {
                                         );
                                     }
                                     )}
-
-
-
-
-                            </tbody>
+                                    
+                                </tbody>
                         </Table>
                     </div>
                 </div>
