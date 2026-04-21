@@ -1,7 +1,3 @@
-
-
-
-
 const Items = require('./../models/itemsModels')
 
 const addItem = async (req,res) => {
@@ -39,8 +35,6 @@ const getAllItems = async (req,res) => {
     }
 
 }
-
-
 const deleteItem = async (req,res) => {
     try {
 

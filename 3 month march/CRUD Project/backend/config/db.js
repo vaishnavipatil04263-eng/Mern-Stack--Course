@@ -4,7 +4,7 @@ const connectDB = () => {
     try {
 
         //mongoos use moongodb connect
-        mongoose.connect("mongodb://localhost:27017/item-database")
+        mongoose.connect(process.env.MONGO_DB_URL)
 
             //if connection successful show message in console
             .then(() => console.log("MongoDB connected"))

@@ -167,7 +167,6 @@ function Homepage() {
 
     return (
         <>
-
             <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -354,4 +353,4 @@ function Homepage() {
     )
 }
 
-export default Homepage
+export default Homepage;
